@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
-import Button from './components/Button'
-
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
+import Users from "./components/Users";
+import Hellooo from "./components/Hellooo";
+import Todo from './components/Todo'
+import Login from "./components/Login";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 1
-    }
-
-  }
-
-  handleCount(value) {
-    this.setState((prevState) => ({ count: prevState.count + value }));
-  }
-
-
-  render(){
+  render() {
     return (
-       <div>
-        Current count: {this.state.count}
-        <hr />
-        <Button sign="+" count={this.state.count} updateCount={this.handleCount.bind(this)} />
-        <Button sign="-" count={this.state.count} updateCount={this.handleCount.bind(this)} />
-      </div>
-  );
-}
+      <Container >
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Hellooo} />
+          <Route path="/users" component={Users}/>
+          <Route path="/todo" component={Todo}/>
+          <Route path="/login" component={Login}/>
+
+        </Switch>
+      </Router>
+      </Container>
+    );
+  }
 }
 
 export default App;
